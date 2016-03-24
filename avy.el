@@ -971,17 +971,18 @@ The window scope is determined by `avy-all-windows' (ARG negates it)."
 The window scope is determined by `avy-all-windows' (ARG negates it)."
   (interactive (list (read-char "char: " t)
                      current-prefix-arg))
+  ;; TODO it needs eab/or-char function from boykov/ace-jump-mode
   (avy-with avy-goto-word-1
     (let* ((str (string char))
            (regex (cond ((string= str ".")
                          "\\.")
                         ((and avy-word-punc-regexp
                               (string-match avy-word-punc-regexp str))
-                         (regexp-quote str))
+                         (regexp-quote (eab/or-char str)))
                         (t
                          (concat
                           "\\b"
-                          str)))))
+                          (eab/or-char str))))))
       (avy--generic-jump regex arg avy-style))))
 
 (declare-function subword-backward "subword")
