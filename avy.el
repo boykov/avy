@@ -971,7 +971,7 @@ The window scope is determined by `avy-all-windows' (ARG negates it)."
 The window scope is determined by `avy-all-windows' (ARG negates it)."
   (interactive (list (read-char "char: " t)
                      current-prefix-arg))
-  ;; TODO it needs eab/or-char function from boykov/ace-jump-mode
+  ;; TODO it needs eab/or-char function from https://github.com/boykov/ace-jump-mode
   (avy-with avy-goto-word-1
     (let* ((str (string char))
            (regex (cond ((string= str ".")
