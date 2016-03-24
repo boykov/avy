@@ -974,11 +974,11 @@ The window scope is determined by `avy-all-windows' (ARG negates it)."
   ;; TODO it needs eab/or-char function from https://github.com/boykov/ace-jump-mode
   (avy-with avy-goto-word-1
     (let* ((str (string char))
-           (regex (cond ((string= str ".")
-                         "\\.")
+           (regex (cond ((member str eab/char-en-ru-special)
+                         (eab/or-char str))
                         ((and avy-word-punc-regexp
                               (string-match avy-word-punc-regexp str))
-                         (regexp-quote (eab/or-char str)))
+                         (regexp-quote str))
                         (t
                          (concat
                           "\\b"
